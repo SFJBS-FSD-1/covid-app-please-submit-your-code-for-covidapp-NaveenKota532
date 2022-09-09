@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Covidapp homepage</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h1> Search for covid19 data of a country </h1>
+<div class="col-md-6 col-md-offset-3">
+<form method="post" action="/">
+    <input type="text" name="country" placeholder="enter country name">
+    <button type="submit">SUBMIT</button>
+</form>
+</div>
+    {% if mydata.status == 200 %}
+<div class="col-md-6 col-md-offset-3">
+<h3> Country: {{mydata["Country"]}}</h3>
+<h3> TotalConfirmed: {{mydata["TotalConfirmed"]}}</h3>
+<h3> TotalDeaths: {{mydata["TotalDeaths"]}}</h3>
+        {% endif %}
+
+        {% if mydata.status == 404 %}
+    <h3> {{mydata["message"]}}</h3>
+        {% endif %}
+
+        {% if mydata.status == 400 %}
+    <h3> {{mydata["message"]}}</h3>
+        {% endif %}
+</div>
+
+</body>
+</html>
